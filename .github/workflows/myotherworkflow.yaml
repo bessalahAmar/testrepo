@@ -1,0 +1,8 @@
+name: myotherworkflow
+on: push
+jobs:
+    job1:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: echo password
+              run: echo "this is my password ${{secrets.MYPASSWORD}}"
