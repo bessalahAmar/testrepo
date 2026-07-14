@@ -1,7 +1,7 @@
 name: my ascii workflow
 on: push
 jobs:
-    myjob1:
+    build_job:
         runs-on: ubuntu-22.04
         steps:
             - name: pull the repo
@@ -10,3 +10,35 @@ jobs:
               run: |
                    chmod +x ./myscripts/script1.sh
                     ./myscripts/script1.sh
+            - name: upload artifact
+              uses: actions/upload-artifact@v7
+              with: 
+                name: shared
+                path: dragon.txt
+
+                    
+            
+    test_job:
+        runs-on: ubuntu-22.04
+        needs: build_job
+        steps:
+            - name: download artifact
+              uses: actions/download-artifact@v7
+              with:
+                name: shared
+                path: .
+            - name: test
+              run: grep "dragon" dragon.txt
+
+
+    deploy_job:
+        runs-on: ubuntu-22.04
+        needs: test_job
+        steps:
+            - name: download artifact
+              uses: actions/download-artifact@v7
+              with: 
+                name: shared
+                path: .
+            - name: deploy
+              run: cat dragon.txt
