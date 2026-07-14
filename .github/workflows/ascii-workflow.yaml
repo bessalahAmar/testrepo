@@ -7,4 +7,4 @@ jobs:
             - name: pull the repo
               uses: actions/checkout@v7
             - name: step1
-              run: ../../myscripts/script1.sh
+              run: ./myscripts/script1.sh
