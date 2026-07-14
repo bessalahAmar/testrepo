@@ -17,7 +17,3 @@ jobs:
            echo "hello"
            ls -alhrt
            cat README.md
-    - name: use cowsay
-      run: |
-           apt install cowsay -y
-           cowsay -f dragon
