@@ -1,8 +1,11 @@
 name: myotherworkflow
-on: workflow_dispatch
+on: push
 jobs:
     job1:
+        strategy:
+          matrix:
+            animals: ["cat","dog","lion"]
         runs-on: ubuntu-22.04
         steps:
-            - name: echo password
-              run: echo "this is my password ${{secrets.MYPASSWORD}}"
+            - name: echo animal
+              run: echo "${{matrix.animals}}"
