@@ -2,10 +2,7 @@ name: myotherworkflow
 on: push
 jobs:
     job1:
-        strategy:
-          matrix:
-            animals: ["cat","dog","lion"]
         runs-on: ubuntu-22.04
         steps:
             - name: echo animal
-              run: echo "${{matrix.animals}}"
+              run: echo "${{toJson(runner)}}"
