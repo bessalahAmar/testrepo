@@ -2,7 +2,10 @@ name: myotherworkflow
 on: push
 jobs:
     job1:
+        strategy:
+          matrix:
+            contextlist: ["runner","job","github"]
         runs-on: ubuntu-22.04
         steps:
             - name: echo animal
-              run: echo "${{toJson(runner)}}"
+              run: echo "${{toJson('$${{matrix.contextlist}}')}}"
