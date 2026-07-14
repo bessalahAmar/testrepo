@@ -4,5 +4,7 @@ jobs:
     myjob1:
         runs-on: ubuntu-22.04
         steps:
+            - name: pull the repo
+              uses: actions/checkout@v7
             - name: step1
               run: ../../myscripts/script1.sh
