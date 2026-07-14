@@ -12,3 +12,12 @@ jobs:
       run: ls
     - name: step 3
       run: cat README.md
+    - name: multi line step
+      run: |
+           echo "hello"
+           ls -alhrt
+           cat README.md
+    - name: use cowsay
+      run: |
+           apt install cowsay -y
+           cowsay -f dragon
