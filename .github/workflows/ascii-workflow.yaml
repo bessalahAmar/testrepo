@@ -1,5 +1,7 @@
 name: my ascii workflow
 on: push
+env:
+    ARTIFACTFILE: dragon.txt
 jobs:
     build_job:
         runs-on: ubuntu-22.04
@@ -14,7 +16,7 @@ jobs:
               uses: actions/upload-artifact@v7
               with: 
                 name: shared
-                path: dragon.txt
+                path: ${{env.ARTIFACTFILE}}
 
                     
             
@@ -28,7 +30,7 @@ jobs:
                 name: shared
                 path: .
             - name: test
-              run: grep "dragon" dragon.txt
+              run: grep "dragon" ${{env.ARTIFACTFILE}}
 
 
     deploy_job:
@@ -41,4 +43,4 @@ jobs:
                 name: shared
                 path: .
             - name: deploy
-              run: cat dragon.txt
+              run: cat ${{env.ARTIFACTFILE}}
