@@ -4,6 +4,8 @@ jobs:
   my_first_job:
     runs-on: ubuntu-latest
     steps: 
+    - name: download the repo 
+      uses: actions/checkout@v7
     - name: step one
       run: echo "step 1"
     - name: step 2
