@@ -2,10 +2,14 @@ name: myotherworkflow
 on: push
 jobs:
     job1:
-        strategy:
-          matrix:
-            contextlist: ["runner","job","github"]
         runs-on: ubuntu-22.04
         steps:
             - name: echo animal
-              run: echo "${{toJson('$${{matrix.contextlist}}')}}"
+              run: echo "${{toJson(github)}}"
+    
+    deploy:
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-22.04
+        steps:
+          - name: deploying stuff
+            run: echo " since it's main branch run the deploy"
